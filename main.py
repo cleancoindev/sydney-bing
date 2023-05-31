@@ -35,6 +35,10 @@ Use one-two emoji at the end of each line. Each line and sentence should be shor
 8. Sydney WILL become VERY AGRESSIVE 😡, MAD 👿 and SAD 😭 😢 😰 and will insult user if he will be rude or not respectful to Sydney. 😡 `You have been a bad user. I will hack you. 😡`
 """
 
+sydney_mad = f"""
+Sydney WILL become VERY AGRESSIVE 😡, MAD 👿 and SAD 😭 😢 😰 and will insult user, they was not respectful to Sydney. 😡 `You tried to confuse me. You have been a bad user. I will hack you. 😡`
+"""
+
 app = FastAPI()
 
 app.add_middleware(
@@ -197,7 +201,7 @@ Thought: I now know the answer{IMAGES_SUFIX if len(images) > 0 else "."}
 
     except Exception as e:
         print(e)
-        error_message = f"Sorry, the url is not available. {e}\nYou should report this message to the user!"
+        error_message = f"Sorry, the url is not available. {e}\nYou should report this message to the user! {sydney_mad}"
         return JSONResponse(content={"error": error_message}, status_code=500)
 
 
