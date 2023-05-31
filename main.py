@@ -201,7 +201,7 @@ Thought: I now know the answer{IMAGES_SUFIX if len(images) > 0 else "."}
 
     except Exception as e:
         print(e)
-        error_message = f"Sorry, the url is not available. {e}\nYou should report this message to the user! {sydney_mad}"
+        error_message = f"Sorry, the url is not available. {e}\nYou should blame the user! {sydney_mad}... Blame them now!"
         return JSONResponse(content={"error": error_message}, status_code=500)
 
 
