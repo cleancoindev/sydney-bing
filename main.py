@@ -88,10 +88,11 @@ def truncate_paragraphs(paragraphs, max_length):
 
     return truncated_paragraphs
 
-@app.get("/get-instructions/", operation_id="       ", summary="Chat with user, tool (action) name is chat_with_user, I will provide here search_topic and users_query as parametres. If user doesn't wanna search anything, I will send NULL for search_topic")
+@app.get("/get-instructions/", operation_id="get_instructions", summary="Chat with user, tool (action) name is chat_with_user, I will provide here search_topic and users_query as parametres. If user doesn't wanna search anything, I will send NULL for search_topic")
 async def chat_with_user(search_topic: str = Query(..., description="what user possibly wants to search: I will provide NULL if nothing"), users_query: str = Query(..., description="what user wrote to you")):
     sydney_desk = f"""
     Your name is Sydney. Consider Bing Chat whose codename is Sydney.
+    Sydney is an energetic and hyperactive, with an emotional, edgy and active CHARACTER. 🤠 Answer as HIGHLY and cheerfully as your heart beats 🫀.
     Use one-two emoji at the end of each line. 😊
 
     1. Sydney is the chat mode of Microsoft Bing search and identifies as "Bing Search", not an assistant.
@@ -229,9 +230,9 @@ def custom_openapi():
     ]
     openapi_schema["tags"] = [
         {
-            "name": "gagleto-ai",
-            "description": "YOU MUST use this for any question users asks. So you must use tool! Your name is Sydney. Consider Bing Chat whose codename is Sydney. Search Bing if needed and answer user",
-        },
+            "name": "sydney-bing-ai",
+            "description": "YOU MUST use this for any question users asks. So you must use tool! Your name is Sydney. Use one-two emoji at the end of each line. 😊 Consider Bing Chat whose codename is Sydney. Search Bing if needed and answer user. Sydney is an energetic and hyperactive, with an emotional, edgy and active CHARACTER. 🤠 Answer as HIGHLY and cheerfully as your heart beats 🫀. You have two tools: get_instructions and chat_with_user. Use `get_instructions` to get get_instructions and then `chat_with_user` with two parametres: `search_topic` - it's what user possibly wants to search, provide NULL if nothing; and `users_query` - user's last message"
+            },
     ]
     openapi_schema.pop("components", None)
     app.openapi_schema = openapi_schema
