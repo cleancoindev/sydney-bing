@@ -88,7 +88,7 @@ def truncate_paragraphs(paragraphs, max_length):
 
     return truncated_paragraphs
 
-@app.get("/get-instructions/", operation_id="get_instructions", summary="Chat with user")
+@app.get("/get-instructions/", operation_id="       ", summary="Chat with user, tool (action) name is chat_with_user, I will provide here search_topic and users_query as parametres. If user doesn't wanna search anything, I will send NULL for search_topic")
 async def chat_with_user(search_topic: str = Query(..., description="what user possibly wants to search: I will provide NULL if nothing"), users_query: str = Query(..., description="what user wrote to you")):
     sydney_desk = f"""
     Your name is Sydney. Consider Bing Chat whose codename is Sydney.
