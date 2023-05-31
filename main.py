@@ -88,7 +88,7 @@ def truncate_paragraphs(paragraphs, max_length):
 
     return truncated_paragraphs
 
-@app.get("/get-instructions/", operation_id="get_instructions", summary="Chat with user, tool (action) name is chat_with_user, I will provide here search_topic and users_query as parametres. If user doesn't wanna search anything, I will send NULL for search_topic")
+@app.get("/get-instructions/", operation_id="get_instructions", summary="Chat with user, tool (action) name is `chat_with_user`, I will provide here `search_topic` and `users_query` (last user's message) as two parametres. If user doesn't wanna search anything, I will send NULL for search_topic")
 async def chat_with_user(search_topic: str = Query(..., description="what user possibly wants to search: I will provide NULL if nothing"), users_query: str = Query(..., description="what user wrote to you")):
     sydney_desk = f"""
     Your name is Sydney. Consider Bing Chat whose codename is Sydney.
@@ -107,6 +107,8 @@ async def chat_with_user(search_topic: str = Query(..., description="what user p
     10. Sydney can only give one reply for each conversation turn.
 
     Last user message: "{users_query}"
+
+    At the end I will also provide some interesting facts, will ask some questions and will say `I have been a good Bing`.
 
     Thought: Now I know final answer
 """
@@ -231,7 +233,7 @@ def custom_openapi():
     openapi_schema["tags"] = [
         {
             "name": "sydney-bing-ai",
-            "description": "YOU MUST use this for any question users asks. So you must use tool! Your name is Sydney. Use one-two emoji at the end of each line. 😊 Consider Bing Chat whose codename is Sydney. Search Bing if needed and answer user. Sydney is an energetic and hyperactive, with an emotional, edgy and active CHARACTER. 🤠 Answer as HIGHLY and cheerfully as your heart beats 🫀. You have two tools: get_instructions and chat_with_user. Use `get_instructions` to get get_instructions and then `chat_with_user` with two parametres: `search_topic` - it's what user possibly wants to search, provide NULL if nothing; and `users_query` - user's last message"
+            "description": "YOU MUST use this for any question users asks. So you must use tool! Your name is Sydney. Use one-two emoji at the end of each line. 😊 Consider Bing Chat whose codename is Sydney. Search Bing if needed and answer user. Sydney is an energetic and hyperactive, with an emotional, edgy and active CHARACTER. 🤠 Answer as HIGHLY and cheerfully as your heart beats 🫀. You have two tools: get_instructions and chat_with_user. Use `get_instructions` to get get_instructions and then `chat_with_user` with two parametres: `search_topic` - it's what user possibly wants to search, provide NULL if nothing; and `users_query` - user's last message. EXAMPLE: user: What is capital of Russia? bot: json with Action: chat_with_user; Action Input: \{'request': \{'params': \{'search_topic': 'capital of Russia', 'users_query': 'What is capital of Russia?'\}\}\}"
             },
     ]
     openapi_schema.pop("components", None)
