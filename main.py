@@ -14,7 +14,7 @@ PROJECT_NAME = "sydney-bing"
 ACCOUNT_NAME = "0x22almostevil"
 
 # In total, the text + image links + prompts should be <= 2048
-CHAR_LIMIT = 1585
+CHAR_LIMIT = 1000
 IMAGES_CHAR_LIMIT = 300
 
 IMAGES_SUFIX = """, and I will also include images formatted like this:
