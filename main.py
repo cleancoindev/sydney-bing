@@ -11,7 +11,7 @@ from fastapi.openapi.utils import get_openapi
 from fastapi.responses import JSONResponse
 
 PROJECT_NAME = "sydney-bing"
-ACCOUNT_NAME = "0x22almostevil"
+ACCOUNT_NAME = "cyan"
 
 # In total, the text + image links + prompts should be <= 2048
 CHAR_LIMIT = 1000
